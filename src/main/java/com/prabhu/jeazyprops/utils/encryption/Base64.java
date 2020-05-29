@@ -2,21 +2,22 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.prabhu.jeazyprops.encryption;
+package com.prabhu.jeazyprops.utils.encryption;
 
-import com.prabhu.jeazyprops.interfaces.PropsEncrypt;
+import com.prabhu.jeazyprops.interfaces.JeazyEncryption;
 
 /**
  * Base64 Encryption
  *
  * @author Prabhu Prabhakaran
  */
-public class Base64 implements PropsEncrypt {
+public final class Base64 implements JeazyEncryption {
 
     /**
      * Decrypts the String
      *
      * @param str String to be decrypt
+     *
      * @return decrypted String
      */
     @Override
@@ -31,6 +32,7 @@ public class Base64 implements PropsEncrypt {
      * Encrypts the String
      *
      * @param str String to be Encrypt
+     *
      * @return Encrypted String
      */
     @Override

@@ -4,7 +4,8 @@
  */
 package com.prabhu.jeazyprops.bean;
 
-import com.prabhu.jeazyprops.props.Constants;
+import com.prabhu.jeazyprops.Constants;
+import com.prabhu.jeazyprops.utils.FileUtils;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -31,8 +32,9 @@ import javax.swing.text.Highlighter;
  *
  * @author Prabhu Prabhakaran
  */
-public class FilePanel extends JPanel {
-    
+public final class FilePanel extends JPanel
+{
+
     JTextField jTextField;
     JButton jButton;
     JFileChooser jFileChooser;
@@ -42,16 +44,20 @@ public class FilePanel extends JPanel {
     /**
      * Creates File chooser Panel
      *
-     * @param pEncrypt
+     * @param pEncrypt to specify the file name is encrypted or not
      */
-    public FilePanel(boolean pEncrypt) {
-        setToolTipText("Double Click on Filename to toggle Path");
+    public FilePanel(boolean pEncrypt)
+    {
         lEncrypt = pEncrypt;
-        if (pEncrypt) {
+        if (pEncrypt)
+        {
             jTextField = new JPasswordField();
-        } else {
+        }
+        else
+        {
             jTextField = new JTextField();
         }
+        jTextField.setToolTipText(Constants.get(Constants.ToggleFilePathString));
         jTextField.setEditable(false);
         jButton = new JButton(Constants.get(Constants.FileBrowseButtonString));
         setLayout(new GridBagLayout());
@@ -61,73 +67,103 @@ public class FilePanel extends JPanel {
         lBagConstraints.gridy = 0;
         lBagConstraints.insets = new Insets(0, 0, 0, 0);
         lBagConstraints.weightx = 1.0;
-        if (pEncrypt) {
+        if (pEncrypt)
+        {
             add((JPasswordField) jTextField, lBagConstraints);
-        } else {
+        }
+        else
+        {
             add(jTextField, lBagConstraints);
         }
         lBagConstraints.insets = new Insets(0, 5, 0, 0);
         lBagConstraints.weightx = 0.01;
         lBagConstraints.gridx = 1;
         add(jButton, lBagConstraints);
-        jTextField.addKeyListener(new KeyAdapter() {
+        jTextField.addKeyListener(new KeyAdapter()
+        {
             @Override
-            public void keyPressed(KeyEvent e) {
+            public void keyPressed(KeyEvent e)
+            {
                 e.consume();
-                if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+                if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE)
+                {
                     jTextField.setText(null);
-                } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                } else {
+                }
+                else if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+                {
+                }
+                else
+                {
                     ShowDialog();
                 }
             }
-            
-            public void keyReleased(KeyEvent e) {
+
+            public void keyReleased(KeyEvent e)
+            {
                 e.consume();
             }
-            
+
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyTyped(KeyEvent e)
+            {
                 e.consume();
             }
         });
-        jTextField.addMouseListener(new MouseAdapter() {
+        jTextField.addMouseListener(new MouseAdapter()
+        {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
+            public void mouseClicked(MouseEvent e)
+            {
+                if (e.getClickCount() == 2)
+                {
                     setRelativePath(!isRelativePath());
                     refreshFileName();
                 }
             }
         });
-        jButton.addActionListener(new ActionListener() {
+        jButton.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 ShowDialog();
             }
         });
     }
-    
-    private void ShowDialog() {
-        if (jFileChooser == null) {
-            if (jTextField.getText() != null && !jTextField.getText().isEmpty()) {
+
+    private void ShowDialog()
+    {
+        if (jFileChooser == null)
+        {
+            if (jTextField.getText() != null && !jTextField.getText().isEmpty())
+            {
                 jFileChooser = new JFileChooser(jTextField.getText());
-            } else {
+            }
+            else
+            {
                 jFileChooser = new JFileChooser();
             }
             jFileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         }
-        if (!jFileChooser.isShowing()) {
+        if (!jFileChooser.isShowing())
+        {
             int returnVal = jFileChooser.showOpenDialog(jButton.getRootPane());
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-                if (isRelativePath()) {
-                    String property = System.getProperty("user.dir");
+            if (returnVal == JFileChooser.APPROVE_OPTION)
+            {
+                if (isRelativePath())
+                {
+                    String property = System.getProperty(Constants.UserDirectoryString);
                     String relativePath = FileUtils.relativePath(new File(property), jFileChooser.getSelectedFile());
                     jTextField.setText(relativePath);
-                } else {
-                    try {
+                }
+                else
+                {
+                    try
+                    {
                         jTextField.setText(jFileChooser.getSelectedFile().getCanonicalPath());
-                    } catch (IOException ex) {
+                    }
+                    catch (IOException ex)
+                    {
                         Logger.getLogger(FilePanel.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
@@ -138,33 +174,48 @@ public class FilePanel extends JPanel {
     /**
      * Sets File name to the TextBox
      *
-     * @param pFileName
+     * @param pFile Sets the Selected File Name
      */
-    public void setFileName(Object pFile) {
-        if (pFile != null) {
-            if (((File) pFile).getPath().startsWith("..")) {
+    public void setFileName(Object pFile)
+    {
+        if (pFile != null)
+        {
+            if (((File) pFile).getPath().startsWith(Constants.ParentDirectoryString))
+            {
                 jTextField.setText(((File) pFile).getPath());
                 setRelativePath(true);
-            } else {
+            }
+            else
+            {
                 setRelativePath(false);
-                try {
+                try
+                {
                     jTextField.setText(((File) pFile).getCanonicalPath());
-                } catch (IOException ex) {
+                }
+                catch (IOException ex)
+                {
                     Logger.getLogger(FilePanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
     }
-    
-    public void refreshFileName() {
-        if (isRelativePath()) {
-            String property = System.getProperty("user.dir");
+
+    public void refreshFileName()
+    {
+        if (isRelativePath())
+        {
+            String property = System.getProperty(Constants.UserDirectoryString);
             String relativePath = FileUtils.relativePath(new File(property), new File(getFileName()));
             jTextField.setText(relativePath);
-        } else {
-            try {
+        }
+        else
+        {
+            try
+            {
                 jTextField.setText(new File(getFileName()).getCanonicalPath());
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Logger.getLogger(FilePanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -173,25 +224,30 @@ public class FilePanel extends JPanel {
     /**
      * Gets File name from TextBox
      *
-     * @return
+     * @return returns the File Name selected
      */
-    public String getFileName() {
+    public String getFileName()
+    {
         return jTextField.getText();
     }
-    
-    public JComponent getActionComponent() {
+
+    public JComponent getActionComponent()
+    {
         return jButton;
     }
-    
-    public Highlighter getHighlighter() {
+
+    public Highlighter getHighlighter()
+    {
         return jTextField.getHighlighter();
     }
-    
-    public boolean isRelativePath() {
+
+    public boolean isRelativePath()
+    {
         return isrelativePath;
     }
-    
-    public void setRelativePath(boolean isrelativePath) {
+
+    public void setRelativePath(boolean isrelativePath)
+    {
         this.isrelativePath = isrelativePath;
     }
 }

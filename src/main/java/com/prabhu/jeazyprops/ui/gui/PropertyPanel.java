@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.prabhu.cmdwindow.ui;
+package com.prabhu.jeazyprops.ui.gui;
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -12,13 +12,16 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Pinky
+ * @author Prabhu Prabhakaran
  */
-public class PropertyPanel extends JPanel {
+public class PropertyPanel extends JPanel
+{
 
-    public void replace(JComponent source) {
+    public void replace(JComponent source)
+    {
         Container OldPanel = source.getParent();
-        while (!(OldPanel instanceof PropertyPanel)) {
+        while (!(OldPanel instanceof PropertyPanel))
+        {
             OldPanel = OldPanel.getParent();
         }
         Container OldPanelParent = OldPanel.getParent();

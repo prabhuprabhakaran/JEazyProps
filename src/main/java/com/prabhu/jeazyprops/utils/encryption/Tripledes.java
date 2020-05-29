@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.prabhu.jeazyprops.encryption;
+package com.prabhu.jeazyprops.utils.encryption;
 
-import com.prabhu.jeazyprops.interfaces.PropsEncrypt;
-import com.prabhu.jeazyprops.props.Constants;
+import com.prabhu.jeazyprops.Constants;
+import com.prabhu.jeazyprops.interfaces.JeazyEncryption;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,8 +29,7 @@ import javax.crypto.spec.DESedeKeySpec;
  *
  * @author Prabhu Prabhakaran
  */
-public class Tripledes
-        implements PropsEncrypt {
+public final class Tripledes implements JeazyEncryption {
 
     Cipher decipher;
     Cipher encipher;
@@ -38,7 +37,7 @@ public class Tripledes
     /**
      * Initializes a new Object
      *
-     * @param pFile
+     * @param pFile Key File for TripleDes Encryption
      */
     public Tripledes(File pFile) {
         SecretKey key;
@@ -60,6 +59,7 @@ public class Tripledes
      * Decrypts the String
      *
      * @param str String to be decrypt
+     *
      * @return decrypted String
      */
     public String decrypt(String str) {
@@ -78,6 +78,7 @@ public class Tripledes
      * Encrypts the String
      *
      * @param str String to be Encrypt
+     *
      * @return Encrypted String
      */
     public String encrypt(String str) {
@@ -111,6 +112,7 @@ public class Tripledes
      * Generates a DES Key Pass Phrase
      *
      * @return
+     * <p>
      * @throws NoSuchAlgorithmException
      */
     private static SecretKey generateKey()
@@ -141,6 +143,7 @@ public class Tripledes
      * Reads the Pass Phrase from File
      *
      * @param f file to be read
+     *
      * @return pass phrase
      */
     private static SecretKey readKey(File f)

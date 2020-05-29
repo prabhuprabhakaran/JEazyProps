@@ -1,32 +1,25 @@
 
-import com.prabhu.jeazyprops.bean.KeyValue;
-import com.prabhu.jeazyprops.encryption.AES;
-import com.prabhu.jeazyprops.props.BaseProps;
+import com.prabhu.jeazyprops.bean.JeazyProps;
+import com.prabhu.jeazyprops.bean.PropsElement;
+import com.prabhu.jeazyprops.interfaces.PropertiesEntity;
+import com.prabhu.jeazyprops.props.PropertyDisplayer;
+import com.prabhu.jeazyprops.utils.encryption.AES;
 import java.io.File;
+import java.util.Locale;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlRootElement;
 
-public class JEazyPropsTest extends BaseProps {
+@XmlRootElement(name = "properties")
+@JeazyProps
+public class TestXMLFile implements PropertiesEntity {
 
+    @XmlEnum
     public enum RefreshInterval {
 
         ONE, FIVE, TEN, FIFTEEN, THIRTY, FORTY_FIVE, SIXTY
     };
-    public KeyValue Active = new KeyValue("com.prabhu.jeazyprops.JEazyPropsTest.Active", "IS Active");
-    public KeyValue DataBaseIP = new KeyValue("com.prabhu.jeazyprops.JEazyPropsTest.DataBaseIP", "DataBase &Host Address", new String[]{"DataBase"});
-    public KeyValue DataBasePort = new KeyValue("com.prabhu.jeazyprops.JEazyPropsTest.DataBasePort", "DataBase &Port", new String[]{"DataBase"});
-    public KeyValue DataBaseUName = new KeyValue("com.prabhu.jeazyprops.JEazyPropsTest.DataBaseUName", "DataBase &User Name", new String[]{"DataBase"});
-    public KeyValue DataBasePass = new KeyValue("com.prabhu.jeazyprops.JEazyPropsTest.DataBasePass", "Data&Base Password", true, new String[]{"DataBase"});
-    public KeyValue WebServiceIP = new KeyValue("com.prabhu.jeazyprops.JEazyPropsTest.WebServiceIP", "&WebService Host Address", new String[]{"Webservice"});
-    public KeyValue WebServicePort = new KeyValue("com.prabhu.jeazyprops.JEazyPropsTest.WebServicePort", "WebS&ervice Port", new String[]{"Webservice"});
-    public KeyValue WebServiceUName = new KeyValue("com.prabhu.jeazyprops.JEazyPropsTest.WebServiceUName", "WebSe&rvice User Name", new String[]{"Webservice"});
-    public KeyValue WebServicePass = new KeyValue("com.prabhu.jeazyprops.JEazyPropsTest.WebServicePass", "WebServ&ice Password", true, new String[]{"Webservice"});
-    public KeyValue QueueIP = new KeyValue("com.prabhu.jeazyprops.JEazyPropsTest.QueueIP", "&Queue Host Address", new String[]{"Queue"});
-    public KeyValue QueuePort = new KeyValue("com.prabhu.jeazyprops.JEazyPropsTest.QueuePort", "Que&ue Port", new String[]{"Queue"});
-    public KeyValue QueueUName = new KeyValue("com.prabhu.jeazyprops.JEazyPropsTest.QueueUName", "Queue User &Name", new String[]{"Queue"});
-    public KeyValue QueuePass = new KeyValue("com.prabhu.jeazyprops.JEazyPropsTest.QueuePass", "Queue Passwor&d", true, new String[]{"Queue"});
-    public KeyValue PropertyFile = new KeyValue("com.prabhu.jeazyprops.JEazyPropsTest.PropertyFile", "&Property File Path");
-    public KeyValue RefreshInterval = new KeyValue("com.prabhu.jeazyprops.JEazyPropsTest.RefreshInterval", "Refresh In&terval", new String[]{"Queue", "Webservice", "DataBase"});
-    public KeyValue Owner = new KeyValue("com.prabhu.jeazyprops.JEazyPropsTest.Owner", null);
-    public static JEazyPropsTest lPropsTest;
+
     private boolean active;
     private String dataBaseIP;
     private int dataBasePort;
@@ -44,19 +37,12 @@ public class JEazyPropsTest extends BaseProps {
     private RefreshInterval refreshInterval;
     private String owner;
 
-    public static JEazyPropsTest getInstance() {
-        if (lPropsTest == null) {
-            lPropsTest = new JEazyPropsTest();
-            lPropsTest.setEncryption(new AES());
-            lPropsTest.loadProperties("JEazyPropsTest.properties");
-        }
-        return lPropsTest;
-    }
-
     public boolean getActive() {
         return active;
     }
 
+    @XmlElement
+    @PropsElement(keyName = "com.prabhu.jeazyprops.JEazyPropsTest.Active", displayName = "IS &Active")
     public void setActive(boolean active) {
         this.active = active;
     }
@@ -65,6 +51,8 @@ public class JEazyPropsTest extends BaseProps {
         return owner;
     }
 
+    @XmlElement
+    @PropsElement(keyName = "com.prabhu.jeazyprops.JEazyPropsTest.Owner", displayName = "")
     public void setOwner(String owner) {
         this.owner = owner;
     }
@@ -73,6 +61,8 @@ public class JEazyPropsTest extends BaseProps {
         return dataBaseIP;
     }
 
+    @XmlElement
+    @PropsElement(keyName = "com.prabhu.jeazyprops.JEazyPropsTest.DataBaseIP", displayName = "DataBase &Host Address", groups = "Database")
     public void setDataBaseIP(String dataBaseIP) {
         this.dataBaseIP = dataBaseIP;
     }
@@ -81,6 +71,8 @@ public class JEazyPropsTest extends BaseProps {
         return dataBasePort;
     }
 
+    @XmlElement
+    @PropsElement(keyName = "com.prabhu.jeazyprops.JEazyPropsTest.DataBaseIP", displayName = "DataBase &Host Address", groups = "Database")
     public void setDataBasePort(int dataBasePort) {
         this.dataBasePort = dataBasePort;
     }
@@ -89,6 +81,8 @@ public class JEazyPropsTest extends BaseProps {
         return dataBaseUName;
     }
 
+    @XmlElement
+    @PropsElement(keyName = "com.prabhu.jeazyprops.JEazyPropsTest.DataBaseUName", displayName = "DataBase &User Name", groups = "Database")
     public void setDataBaseUName(String dataBaseUName) {
         this.dataBaseUName = dataBaseUName;
     }
@@ -97,6 +91,8 @@ public class JEazyPropsTest extends BaseProps {
         return dataBasePass;
     }
 
+    @XmlElement
+    @PropsElement(keyName = "com.prabhu.jeazyprops.JEazyPropsTest.DataBasePass", displayName = "Data&Base Password", isEncrypted = true, groups = "Database")
     public void setDataBasePass(String dataBasePass) {
         this.dataBasePass = dataBasePass;
     }
@@ -105,6 +101,8 @@ public class JEazyPropsTest extends BaseProps {
         return webServiceIP;
     }
 
+    @XmlElement
+    @PropsElement(keyName = "com.prabhu.jeazyprops.JEazyPropsTest.WebServiceIP", displayName = "&WebService Host Address", groups = "WebService")
     public void setWebServiceIP(String webServiceIP) {
         this.webServiceIP = webServiceIP;
     }
@@ -113,6 +111,8 @@ public class JEazyPropsTest extends BaseProps {
         return webServicePort;
     }
 
+    @XmlElement
+    @PropsElement(keyName = "com.prabhu.jeazyprops.JEazyPropsTest.WebServicePort", displayName = "WebS&ervice Port", groups = "WebService")
     public void setWebServicePort(int webServicePort) {
         this.webServicePort = webServicePort;
     }
@@ -121,6 +121,8 @@ public class JEazyPropsTest extends BaseProps {
         return webServiceUName;
     }
 
+    @XmlElement
+    @PropsElement(keyName = "com.prabhu.jeazyprops.JEazyPropsTest.WebServiceUName", displayName = "WebSe&rvice User Name", groups = "WebService")
     public void setWebServiceUName(String webServiceUName) {
         this.webServiceUName = webServiceUName;
     }
@@ -129,6 +131,8 @@ public class JEazyPropsTest extends BaseProps {
         return webServicePass;
     }
 
+    @XmlElement
+    @PropsElement(keyName = "com.prabhu.jeazyprops.JEazyPropsTest.WebServicePass", displayName = "WebServ&ice Password", groups = "WebService", isEncrypted = true)
     public void setWebServicePass(String webServicePass) {
         this.webServicePass = webServicePass;
     }
@@ -137,6 +141,8 @@ public class JEazyPropsTest extends BaseProps {
         return queueIP;
     }
 
+    @XmlElement
+    @PropsElement(keyName = "com.prabhu.jeazyprops.JEazyPropsTest.QueueIP", displayName = "&Queue Host Address", groups = "Queue")
     public void setQueueIP(String queueIP) {
         this.queueIP = queueIP;
     }
@@ -145,6 +151,8 @@ public class JEazyPropsTest extends BaseProps {
         return queuePort;
     }
 
+    @XmlElement
+    @PropsElement(keyName = "com.prabhu.jeazyprops.JEazyPropsTest.QueuePort", displayName = "Que&ue Port", groups = "Queue")
     public void setQueuePort(int queuePort) {
         this.queuePort = queuePort;
     }
@@ -153,6 +161,8 @@ public class JEazyPropsTest extends BaseProps {
         return queueUName;
     }
 
+    @XmlElement
+    @PropsElement(keyName = "com.prabhu.jeazyprops.JEazyPropsTest.QueueUName", displayName = "Queue User &Name", groups = "Queue")
     public void setQueueUName(String queueUName) {
         this.queueUName = queueUName;
     }
@@ -161,6 +171,8 @@ public class JEazyPropsTest extends BaseProps {
         return queuePass;
     }
 
+    @XmlElement
+    @PropsElement(keyName = "com.prabhu.jeazyprops.JEazyPropsTest.QueuePass", displayName = "Queue Passwor&d", isEncrypted = true, groups = "Queue")
     public void setQueuePass(String queuePass) {
         this.queuePass = queuePass;
     }
@@ -169,6 +181,8 @@ public class JEazyPropsTest extends BaseProps {
         return propertyFile;
     }
 
+    @XmlElement
+    @PropsElement(keyName = "com.prabhu.jeazyprops.JEazyPropsTest.PropertyFile", displayName = "&Property File Path")
     public void setPropertyFile(File propertyFile) {
         this.propertyFile = propertyFile;
     }
@@ -177,12 +191,20 @@ public class JEazyPropsTest extends BaseProps {
         return refreshInterval;
     }
 
+    @XmlElement
+    @PropsElement(keyName = "com.prabhu.jeazyprops.JEazyPropsTest.RefreshInterval", displayName = "Refresh In&terval", groups = {"Queue", "WebService", "Database"})
     public void setRefreshInterval(RefreshInterval refreshInterval) {
         this.refreshInterval = refreshInterval;
     }
 
     public static void main(String[] args) {
-        JEazyPropsTest.getInstance().printProperties();
-        JEazyPropsTest.getInstance().displaySettings();
+        Locale.setDefault(new Locale("ta", "IN"));
+        PropertiesEntity lPropsTest = new TestXMLFile();
+
+        PropertyDisplayer lDisplayer = new PropertyDisplayer(lPropsTest);
+        lDisplayer.setEncryption(new AES());
+        lDisplayer.loadProperties("samples/Props2TestJAXB.xml");
+        lDisplayer.displaySettings();
+
     }
 }

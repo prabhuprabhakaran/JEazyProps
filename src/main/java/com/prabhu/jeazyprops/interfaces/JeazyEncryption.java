@@ -9,21 +9,24 @@ package com.prabhu.jeazyprops.interfaces;
  *
  * @author Prabhu Prabhakaran
  */
-public interface PropsEncrypt {
+public interface JeazyEncryption
+{
 
     /**
      * Decrypts the String
      *
-     * @param str String to be decrypt
+     * @param pDataString String to be decrypt
+     *
      * @return decrypted String
      */
-    public abstract String decrypt(String str);
+    public abstract String decrypt(String pDataString);
 
     /**
      * Encrypts the String
      *
-     * @param str String to be Encrypt
+     * @param pDataString String to be Encrypt
+     *
      * @return Encrypted String
      */
-    public abstract String encrypt(String str);
+    public abstract String encrypt(String pDataString);
 }

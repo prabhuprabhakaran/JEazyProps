@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.prabhuprabhakaran</groupId>
     <artifactId>jeazyprops</artifactId>
-    <version>1.0.0-SNAPSHOT</version>    
+    <version>1.0.0</version>    
     <packaging>jar</packaging>
     <name>Jeazyprops</name>
     <description>JeazyProps is a java framework, that used to load the properties files dynamically into a POJO.</description>
@@ -36,7 +36,7 @@
         <connection>scm:git:git://github.com/prabhuprabhakaran/JEazyProps.git</connection>
         <developerConnection>scm:git:git@github.com:prabhuprabhakaran/JEazyProps.git</developerConnection>
         <url>https://github.com/prabhuprabhakaran/JEazyProps</url>
-        <tag>HEAD</tag>
+        <tag>jeazyprops-1.0.0</tag>
     </scm>
     <!--    <scm>
         <connection>scm:git:git://github.com/dexecutor/dexecutor-core.git</connection>

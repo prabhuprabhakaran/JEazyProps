@@ -17,7 +17,6 @@ import com.prabhu.jeazyprops.utils.PropsFiletype;
 import com.prabhu.jeazyprops.utils.encryption.AES;
 import com.prabhu.jeazyprops.utils.encryption.Base64;
 import com.prabhu.jeazyprops.utils.encryption.Tripledes;
-import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -31,7 +30,6 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * This Class used to create GUI for the Property Bean Object. The Property Bean
@@ -82,9 +80,14 @@ public final class PropertyDisplayer {
      */
     static {
         try {
-            javax.swing.UIManager.setLookAndFeel(new WindowsLookAndFeel());
-        } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(PropertyDisplayer.class.getName()).log(Level.SEVERE, null, ex);
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Windows".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception ex) {
+
         }
     }
 

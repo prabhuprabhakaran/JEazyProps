@@ -1,0 +1,75 @@
+JeazyProps V 3.0
+~~~~~~~~~~~~~~~~
+Changed UI Integration Model
+Separated the Reflection Layer
+Added Support of Localization
+
+
+JeazyProps V 2.1.2
+~~~~~~~~~~~~~~~~~~
+Added Date UI
+
+
+JeazyProps V 2.1.1
+~~~~~~~~~~~~~~~~~~
+Fixed Group View Combobox
+Fixed Progaurd Path
+Added Release Notes to Release
+
+
+JeazyProps V 2.1
+~~~~~~~~~~~~~~~~~~
+Added ScrollBar to View
+Added Icon Image
+Added Relative Path and Canaonical path Support
+Added AboutBox
+Fixed Display(Reset) on Third Pary Application
+Fixed Encryption Error
+
+
+JeazyProps V 2.0
+~~~~~~~~~~~~~~~~~~
+Added View Group Mode (Multiple Filters)
+Added Combo box by using Enum Type
+Added Reset Functionality to discard Changes
+
+JeazyProps V 1.0.4
+~~~~~~~~~~~~~~~~~~
+Added View Mode and Editing Mode for Displaying Options
+Added Mnemonic For Labels to Navigate with their Components
+Fixed Display Name on Printing
+Fixed Encryption Bugs
+Text Field Focus Added
+
+JeazyProps V 1.0.3
+~~~~~~~~~~~~~~~~~~
+Able to Integrate the with Application instead of using as Separate Console
+Fixed bug on Encryption option for file paths
+Enhanced for boolean data type to use default getter and setter
+Enhanced Obfuscation
+
+
+JeazyProps V 1.0.2
+~~~~~~~~~~~~~~~~~~
+Added File Selecting option for the file path options
+Added validation for the file paths
+
+
+JeazyProps V 1.0.1
+~~~~~~~~~~~~~~~~~~
+Supports file inside jar and External file using a single Method.
+overrides the property inside jar by using an external property file while saving.
+
+
+JeazyProps V 1.0.0
+~~~~~~~~~~~~~~~~~~
+Supports various data types such as String, Boolean, Integer and Double.
+Supports Encryption such as Base64, Triple Des and AES by default.
+Supports both XML and .properties file.
+Supports both class path file (Inside Jar) and External file.
+Supports different GUI components dynamically as per the data type.
+Supports Validation of data.
+Supports user defined Encryption Algorithms.
+Zero lines code to Update and Save the properties on run time.
+Well Designed and completely documented using javadoc.
+Additional functionality of displaying properties in command window.

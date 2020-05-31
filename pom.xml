@@ -38,19 +38,7 @@
         <url>https://github.com/prabhuprabhakaran/JEazyProps</url>
         <tag>HEAD</tag>
     </scm>
-    <!--    <scm>
-        <connection>scm:git:git://github.com/dexecutor/dexecutor-core.git</connection>
-        <developerConnection>scm:git:git@github.com:dexecutor/dexecutor-core.git</developerConnection>
-        <url>https://github.com/dexecutor/dexecutor-core</url>
-        <tag>HEAD</tag>
-    </scm>-->
-    
-    <!--    <scm>
-        <connection>scm:git:ssh://git@git-eng.REDACTED.com|PROJECT_NAME/hello-world-service-minimal.git</connection>
-        <developerConnection>scm:git:ssh://git@git-eng.REDACTED.com|PROJECT_NAME/hello-world-service-minimal.git</developerConnection>
-        <url>http://git-eng.REDACTED.com/PROJECT_NAME/hello-world-service-minimal/tree/master</url>
-    </scm>-->
-    
+   
     <distributionManagement>
         <snapshotRepository>
             <id>snapshotRepoID-jeazyprops</id>

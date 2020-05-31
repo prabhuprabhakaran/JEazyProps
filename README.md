@@ -242,10 +242,10 @@ But in case of JeazyProps, It Automatically draws the GUI to save the properties
 
 4. now you can able to view and edit your property files
 
-![2020-05-31_10-59-29](C:\codes\work\Open\JEazyProps\images\2020-05-31_10-59-29.png)
+![](https://raw.githubusercontent.com/prabhuprabhakaran/JEazyProps/master/images/2020-05-31_10-59-29.png)
 
-![2020-05-31_10-59-48](C:\codes\work\Open\JEazyProps\images\2020-05-31_10-59-48.png)
+![](https://github.com/prabhuprabhakaran/JEazyProps/blob/master/images/2020-05-31_10-59-48.png?raw=true)
 
-![2020-05-31_11-00-11](C:\codes\work\Open\JEazyProps\images\2020-05-31_11-00-11.png)
+![](https://github.com/prabhuprabhakaran/JEazyProps/blob/master/images/2020-05-31_11-00-11.png?raw=true)
 
 Thanks :) Happy Coding...
